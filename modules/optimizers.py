@@ -48,7 +48,7 @@ class AdamW:
                 t = state['step']
                 m, v = state['m'], state['v']
                 
-                # Weight Decay
+                # Decoupled Weight Decay
                 if wd > 0 and (p.ndim > 1 or self.decay_on_1d):
                     p -= lr * wd * p
                 
