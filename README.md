@@ -177,7 +177,8 @@ ROMEO:
 ```
 
 Output:
-```Palease you weller;
+```
+Palease you weller;
 Then my regrage?
 
 DUKE VINCENTIO:
@@ -196,7 +197,8 @@ No, by my heart.
 **Low Temperature (0.01, top_k=1, top_p=0.999) - Deterministic**
 
 Prompt:
-```First Citizen:
+```
+First Citizen:
 Before we proceed any further, hear me speak.
 
 All:
@@ -205,7 +207,8 @@ Speak, speak.
 First Citizen:
 ```
 Output:
-```His did I will not.
+```
+His did I will not.
 
 CORIOLANUS:
 Why, my lord,
@@ -229,7 +232,8 @@ First Citizen: Speak, speak! Why are you
 ```
 
 Output:
-```Therefore, and then sentleeps, they are they say
+```
+Therefore, and then sentleeps, they are they say
 Therefore poor brothers, they are too much,
 Where they have did nothing but then their chamber
 To worthy of the prophecialment of the present
