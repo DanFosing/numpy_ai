@@ -1,1 +1,1 @@
-BACKEND_TYPE = "numpy"   # or "cupy"
+BACKEND_TYPE = "numpy"   # or "cupy" for GPU
