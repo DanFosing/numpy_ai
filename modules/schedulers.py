@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 class LRScheduler:
     def __init__(self, optimizer, last_step=-1):

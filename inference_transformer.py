@@ -1,7 +1,6 @@
 import pickle
 import argparse
-import backend as xp
-from backend import to_cpu
+from backend import xp, to_cpu
 from architectures.transformer import Transformer
 from tokenization.bpetokenizer import BPETokenizer
 

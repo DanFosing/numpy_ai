@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 from .activations import gelu, gelu_derivative
 
 class MLP:

@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 class DataLoader:
     def __init__(self, dataset, batch_size=1, shuffle=False, drop_last=False):

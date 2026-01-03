@@ -1,39 +1,44 @@
 import os
 import numpy as np
-from dotenv import load_dotenv
-load_dotenv()
+from config import BACKEND_TYPE
 
-BACKEND = os.getenv("BACKEND_TYPE", "numpy").lower()
+BACKEND = BACKEND_TYPE.lower()
 
-if BACKEND == "cupy":
-    try:
-        import cupy as xp
-        print("Using CuPy (GPU)")
-        USE_GPU = True
-        def to_cpu(x): return x.get() if hasattr(x, 'get') else x
-        def to_gpu(x): return xp.asarray(x)
-        
-        def get_device(x):
-            if hasattr(x, 'device'):
-                return f"cuda:{x.device.id}"
-            return "cpu"
+try:
+    import cupy as cp
+    CUPY_AVAILABLE = True
+except ImportError:
+    cp = None
+    CUPY_AVAILABLE = False
 
-    except ImportError:
-        print("CuPy (GPU) not available, using NumPy (CPU)")
-        import numpy as xp
-        USE_GPU = False
-        def to_cpu(x): return x
-        def to_gpu(x): raise Exception("NumPy (CPU) does not support GPU")
-        def get_device(x): return "cpu" # If cupy is not available, we have to use numpy which only uses cpu
+if BACKEND == "cupy" and CUPY_AVAILABLE:
+    xp = cp
+    USE_GPU = True
+    print("Using CuPy (GPU)")
 else:
-    print("Using NumPy (CPU)")
-    import numpy as xp
+    xp = np
     USE_GPU = False
-    def to_cpu(x): return x
-    def to_gpu(x): raise Exception("NumPy (CPU) does not support GPU")
-    def get_device(x): return "cpu" # Numpy only uses cpu
+    print("Using NumPy (CPU)")
 
-for attr in dir(xp):
-    if not attr.startswith("_"):
-        if attr not in globals():
-            globals()[attr] = getattr(xp, attr)
+
+def to_cpu(x):
+    if CUPY_AVAILABLE and isinstance(x, cp.ndarray):
+        return x.get()
+    return x
+
+
+def to_gpu(x):
+    if not CUPY_AVAILABLE:
+        raise RuntimeError("CuPy is not available")
+    if isinstance(x, cp.ndarray):
+        return x
+    return cp.asarray(x)
+
+
+def get_device(x):
+    if CUPY_AVAILABLE and isinstance(x, cp.ndarray):
+        return f"cuda:{x.device.id}"
+    return "cpu"
+
+
+__all__ = ["xp", "USE_GPU", "to_cpu", "to_gpu", "get_device"]

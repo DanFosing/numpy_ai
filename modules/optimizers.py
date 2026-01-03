@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 class AdamW:
     def __init__(self, params, lr=3e-4, betas=(0.9, 0.999), eps=1e-8, weight_decay=0.01, decay_on_1d=False):

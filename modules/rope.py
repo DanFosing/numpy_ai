@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 def precompute_freqs_cis(dim, end, theta=10000.0):
     inv_freq = 1.0 / (theta ** (xp.arange(0, dim, 2) / dim))

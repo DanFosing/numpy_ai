@@ -3,8 +3,7 @@ import argparse
 import urllib.request
 import pickle
 import json
-import backend as xp
-from backend import to_cpu
+from backend import xp
 from architectures.transformer import Transformer
 from modules.optimizers import AdamW
 from modules.schedulers import CosineAnnealingLR

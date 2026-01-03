@@ -3,7 +3,7 @@ import gzip
 import struct
 import io
 import time
-import backend as xp
+from backend import xp
 from modules.activations import relu, relu_derivative, softmax
 
 def cross_entropy_loss(y, y_pred, eps=1e-9):

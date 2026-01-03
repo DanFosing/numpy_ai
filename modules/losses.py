@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 from .activations import softmax
 
 class LossModule:

@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 class LayerNorm:
     def __init__(self, dim, eps=1e-8):

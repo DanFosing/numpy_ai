@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 class Embedding:
     def __init__(self, vocab_size, embed_dim):

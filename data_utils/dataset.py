@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 class Dataset:
     def __len__(self):

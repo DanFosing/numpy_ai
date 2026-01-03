@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 from .activations import softmax
 from .rope import apply_rotary_emb
 

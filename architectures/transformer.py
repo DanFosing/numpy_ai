@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp, to_cpu, to_gpu
 from modules.attention import Attention
 from modules.mlp import MLP
 from modules.layer_norm import LayerNorm
@@ -161,8 +161,12 @@ class Transformer:
         def load(dst, src):
             if len(dst) != len(src):
                 raise ValueError("Param list length mismatch")
+
             for d, s in zip(dst, src):
-                d[...] = s
+                if hasattr(d, "device"):      # destination is CuPy
+                    d[...] = to_gpu(s)
+                else:                          # destination is NumPy
+                    d[...] = to_cpu(s)
 
         load(self.token_embedding.params, weights['token_embedding'])
 
@@ -174,6 +178,8 @@ class Transformer:
 
         load(self.layer_norm.params, weights['layer_norm'])
         load(self.lm_head.params, weights['lm_head'])
+
+        self.freqs_cis = xp.asarray(self.freqs_cis)
 
     @classmethod
     def from_state_dict(cls, state): # Initialize model from complete state_dict

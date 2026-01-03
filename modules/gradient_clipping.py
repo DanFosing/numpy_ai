@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 def clip_grad_norm(grads, max_norm):
     sq_sums = [xp.sum(g**2) for g in grads if g is not None]

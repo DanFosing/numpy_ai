@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 
 class Linear:
     def __init__(self, input_size, output_size, bias=True):

@@ -1,4 +1,4 @@
-import backend as xp
+from backend import xp
 def gelu(x):
     return 0.5 * x * (1 + xp.tanh(xp.sqrt(2 / xp.pi) * (x + 0.044715 * xp.power(x, 3))))
 
